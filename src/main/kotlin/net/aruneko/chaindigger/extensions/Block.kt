@@ -29,7 +29,7 @@ fun Block.isDiggable(): Boolean {
     return blocks.contains(this.type)
 }
 
-fun Block.findChunk(): List<Block> {
+fun Block.findChunk(range: Int): List<Block> {
     val paths = ArrayDeque<ArrayDeque<Block>>()
     val foundBlocks = ArrayDeque<Block>()
     var target = this
@@ -41,7 +41,7 @@ fun Block.findChunk(): List<Block> {
             target.getAround().extractEquals(target).filterNot {
                 // ただし探索済みおよび経路として追加済みのブロックは外す
                 foundBlocks.contains(it) || paths.flatten()
-                    .contains(it) || this.location.manhattanDistance(it.location) > 15
+                    .contains(it) || this.location.manhattanDistance(it.location) > range
             }
         )
         // 周囲に何もない = 木構造の先端まで来たとき

@@ -9,7 +9,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.plugin.Plugin
 
-class ChainDiggerListener(private val plugin: Plugin, private val server: Server) : Listener {
+class ChainDiggerListener(private val plugin: Plugin, private val server: Server, private val range: Int) : Listener {
     @EventHandler
     fun onBreakBlock(event: BlockBreakEvent) {
         val player = event.player
@@ -31,7 +31,7 @@ class ChainDiggerListener(private val plugin: Plugin, private val server: Server
             return
         }
 
-        val chunk = block.findChunk()
+        val chunk = block.findChunk(range)
         chunk.forEach { it.breakNaturally(mainHandItem) }
     }
 }
