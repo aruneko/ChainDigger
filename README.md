@@ -3,9 +3,9 @@
 いわゆるシャベルで掘れるブロックの一括採掘機能を追加する。Spigot用プラグインです。
 
 ## (動作|作成)環境
-- Spigot 1.17.1
-- Java 16
-- Kotlin 1.5.30
+- Spigot 1.18.0
+- Java 17
+- Kotlin 1.6.0
 
 ## How To Build
 以下のコマンドを入力すると、`build/libs/`以下にjarファイルができあがります。
