@@ -1,6 +1,12 @@
 name: build jar package
 
-on: [push]
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -15,7 +21,6 @@ jobs:
       - name: Build with Gradle
         run: |
           ./gradlew build
-      - uses: actions/upload-artifact@v2
+      - uses: softprops/action-gh-release@v1
         with:
-          name: Package
-          path: build/libs
+          files: build/libs/ChainDigger-$(echo $GITHUB_REF | cut -d / -f 3).jar
